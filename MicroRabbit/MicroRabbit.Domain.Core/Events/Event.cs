@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace MicroRabbit.Domain.Core.Events
 {
-    internal class Event
+    public abstract class Event
     {
+        public DateTime TimeStamp { get; protected set; }
+
+        protected Event()
+        {
+            TimeStamp = DateTime.Now;
+        }
     }
 }
