@@ -1,6 +1,6 @@
 ﻿using MicroRabbit.Domain.Core.Events;
 
-namespace MicroRabbit.Banking.Domain.Events
+namespace MicroRabbit.Transfer.Domain.Events
 {
     public class TranferCreatedEvent: Event
     {
