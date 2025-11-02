@@ -31,7 +31,13 @@ namespace MicroRabbit.Infra.IoC
             services.AddTransient<TransferDbContext>();
 
             //Domain Bus
-            services.AddTransient<IEventBus, RabbitMQBus>();
+            services.AddTransient<IEventBus, RabbitMQBus>(sp=>
+            { 
+                var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+                return new RabbitMQBus(sp.GetRequiredService<IMediator>(), scopeFactory);
+            });
+            //subscription
+            services.AddTransient<TransferEventHandler>(); 
 
             //Domain Events
             services.AddTransient<IEventHandler<TranferCreatedEvent>, TransferEventHandler>();
